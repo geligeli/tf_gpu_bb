@@ -1,4 +1,8 @@
 #!/bin/bash
+# -u $(id -u):$(id -g) \
+cd devenv
+make deploy
+
 docker pull 192.168.0.14:5000/tf-gpu-env
 docker run \
   -it --rm \

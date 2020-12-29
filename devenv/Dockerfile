@@ -1,5 +1,12 @@
 FROM tensorflow/tensorflow:devel-gpu
 COPY tf_configure.bazelrc /tensorflow_src/.tf_configure.bazelrc
-COPY .bazelrc /root/.bazelrc
-RUN ln -s /home/geli/.bazel_in_docker /root/.cache
+ARG uid=1000
+ARG user=geli
+ARG gid=1000
+ARG group=geli
+RUN groupadd -g ${gid} ${group}
+RUN useradd -ms /bin/bash ${user} -u ${uid} -g ${gid}
+USER ${user}
+COPY --chown=${user}:${group} .bazelrc /home/${user}/.bazelrc
+RUN ln -s /home/${user}/.bazel_in_docker  /home/${user}/.cache
 WORKDIR /tensorflow_src

@@ -17,5 +17,3 @@ ssh geli@192.168.0.11 bash << 'EOF'
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 EOF
-
-wait
