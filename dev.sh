@@ -1,11 +1,11 @@
 #!/bin/bash
 
+mkdir -p /home/geli/{tf_gpu_dev_out,tf_gpu_dev_src}
+
 cd development_image
 make deploy
 
-mkdir -p /home/geli/{tf_gpu_dev_out,tf_gpu_dev_src}
-
-docker pull 192.168.0.14:5000/tf-gpu-env
+docker pull 192.168.0.14:5000/tf-gpu-env:latest
 docker run \
   -it --rm \
   --add-host buildfarm-server:192.168.0.14 \
