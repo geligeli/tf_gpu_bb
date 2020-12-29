@@ -1,1 +1,1 @@
-build --remote_executor=grpc://buildfarm-server:8980 --spawn_strategy= --strategy_regexp=tensorflow/core/kernels/mlir_generated.*=local
+build --remote_executor=grpc://buildfarm-server:8980 --spawn_strategy= --strategy_regexp=tensorflow/core/kernels/mlir_generated.*=local --output_base=/home/geli/.bazel_in_docker

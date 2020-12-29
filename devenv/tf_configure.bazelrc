@@ -14,6 +14,7 @@ build:opt --copt=-march=native
 build:opt --copt=-Wno-sign-compare
 build:opt --host_copt=-march=native
 build:opt --define with_default_optimizations=true
+build:opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mfpmath=both --copt=-msse4.2
 test --flaky_test_attempts=3
 test --test_size_filters=small,medium
 test --test_env=LD_LIBRARY_PATH
