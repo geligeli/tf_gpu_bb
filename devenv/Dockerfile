@@ -6,7 +6,8 @@ ARG gid=1000
 ARG group=geli
 RUN groupadd -g ${gid} ${group}
 RUN useradd -ms /bin/bash ${user} -u ${uid} -g ${gid}
+RUN echo 'bazel build --config=opt --config=cuda  //tensorflow/tools/pip_package:build_pip_package' >> /home/${user}/.bash_history
 USER ${user}
 COPY --chown=${user}:${group} .bazelrc /home/${user}/.bazelrc
-RUN ln -s /home/${user}/.bazel_in_docker  /home/${user}/.cache
+RUN ln -s /home/${user}/.bazel_in_docker /home/${user}/.cache
 WORKDIR /tensorflow_src
