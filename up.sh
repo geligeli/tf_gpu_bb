@@ -2,6 +2,7 @@
 
 ssh geli@192.168.0.14 bash << EOF
 docker run -d --name buildfarm-redis -p 6379:6379 redis:5.0.9
+docker pull 192.168.0.14:5000/tf-gpu-builder
 docker run -d \
   --name buildfarm-server \
   --add-host buildfarm-server:192.168.0.14 \
@@ -20,6 +21,7 @@ docker run \
 EOF
 
 ssh geli@192.168.0.15 bash << EOF
+docker pull 192.168.0.14:5000/tf-gpu-builder
 docker run -d \
   --name buildfarm-worker \
   --add-host buildfarm-server:192.168.0.14 \
@@ -31,6 +33,7 @@ docker run -d \
 EOF
 
 ssh geli@192.168.0.10 bash << EOF
+docker pull 192.168.0.14:5000/tf-gpu-builder
 docker run -d \
   --name buildfarm-worker \
   --add-host buildfarm-server:192.168.0.14 \
@@ -42,7 +45,8 @@ docker run -d \
 EOF
 
 ssh geli@192.168.0.11 bash << EOF
-docker run -d \
+docker pull 192.168.0.14:5000/tf-gpu-builder
+docker run \
   --name buildfarm-worker \
   --add-host buildfarm-server:192.168.0.14 \
   --add-host buildfarm-redis:192.168.0.14 \
