@@ -6,7 +6,6 @@ docker run -d \
   --name buildfarm-server \
   --add-host buildfarm-server:192.168.0.14 \
   -p 8980:8980 \
-  -v sshvolume:/config \
   192.168.0.14:5000/tf-gpu-builder \
   java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-server_deploy.jar /config/shard-server.config --port=8980 --public_name=192.168.0.14:8980
 docker run \
@@ -15,7 +14,6 @@ docker run \
   --add-host buildfarm-server:192.168.0.14 \
   --add-host buildfarm-redis:192.168.0.14 \
   -p 8981:8981 \
-  -v sshvolume:/config \
   -v /tmp/worker:/tmp/worker \
   192.168.0.14:5000/tf-gpu-builder \
   java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-16.config --public_name=192.168.0.14:8981
@@ -27,7 +25,6 @@ docker run -d \
   --add-host buildfarm-server:192.168.0.14 \
   --add-host buildfarm-redis:192.168.0.14 \
   -p 8981:8981 \
-  -v sshvolume:/config \
   -v /tmp/worker:/tmp/worker \
   192.168.0.14:5000/tf-gpu-builder \
   java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-16.config --public_name=192.168.0.15:8981
@@ -39,7 +36,6 @@ docker run -d \
   --add-host buildfarm-server:192.168.0.14 \
   --add-host buildfarm-redis:192.168.0.14 \
   -p 8981:8981 \
-  -v sshvolume:/config \
   -v /tmp/worker:/tmp/worker \
   192.168.0.14:5000/tf-gpu-builder \
   java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-24.config --public_name=192.168.0.10:8981
@@ -51,7 +47,6 @@ docker run -d \
   --add-host buildfarm-server:192.168.0.14 \
   --add-host buildfarm-redis:192.168.0.14 \
   -p 8981:8981 \
-  -v sshvolume:/config \
   -v /tmp/worker:/tmp/worker \
   192.168.0.14:5000/tf-gpu-builder \
   java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-16.config --public_name=192.168.0.11:8981

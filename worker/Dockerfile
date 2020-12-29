@@ -11,7 +11,7 @@ RUN bazelisk build //src/main/java/build/buildfarm:buildfarm-server_deploy.jar \
     //src/main/java/build/buildfarm:buildfarm-shard-worker_deploy.jar
 RUN mv bazel-bin/src/main/java/build/buildfarm/buildfarm-*deploy.jar .
 RUN bazelisk clean
-RUN rm /tensorflow_src /root/.cache
+RUN rm -r /tensorflow_src /root/.cache
 COPY config /config
 EXPOSE 8980
 EXPOSE 8981
