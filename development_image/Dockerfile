@@ -1,4 +1,7 @@
 FROM tensorflow/tensorflow:devel-gpu
+WORKDIR /usr/local/bin
+RUN wget https://github.com/bazelbuild/bazelisk/releases/download/v1.7.4/bazelisk-linux-amd64 -O bazelisk
+RUN chmod a+x bazelisk
 ARG uid=1000
 ARG user=geli
 ARG gid=1000
