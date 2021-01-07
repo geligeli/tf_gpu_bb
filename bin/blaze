@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -f .bazel_docker_id ]; then
+    echo ".bazel_docker_id file not found, please run start_env.sh to start the bazel container."
+    exit 1
+fi
+
+if [ -z $( docker ps -f id=$(cat .bazel_docker_id) -q ) ]; then
+    echo ".bazel_docker_id points to a docker container that is terminated, please run start_env.sh to start the bazel container."
+    exit 1
+fi
+
+docker exec -it $( cat .bazel_docker_id ) bash -c "cd /src; bazelisk $*"

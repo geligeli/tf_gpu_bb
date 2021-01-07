@@ -207,3 +207,22 @@ docker plugin install vieux/sshfs DEBUG=1
 
 docker run -it --add-host buildfarm-server:192.168.0.14 192.168.0.14:5000/tf-gpu-env bash
   
+
+docker run \
+  --rm \
+  --add-host buildfarm-server:192.168.0.14 \
+  --add-host buildfarm-redis:192.168.0.14 \
+  -v /home/geli/.bazel_in_docker:/home/geli/.bazel_in_docker \
+  -v /home/geli/tf_gpu_dev_out:/mnt \
+  -v $PWD:/src \
+  -w /src \
+  192.168.0.14:5000/tf-gpu-env \
+  bazelisk build tensorflow/cc/examples:snake_main
+
+
+
+complete -o nospace -F _bazel__complete dbazel
+
+dbazel () {
+  docker exec -it bazel-container bash -c "cd /src; bazelisk $*"
+}
