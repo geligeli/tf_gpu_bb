@@ -221,7 +221,7 @@ docker run \
 
 
 
-complete -o nospace -F _bazel__complete dbazel
+complete -o nospace -F _bazel__complete blaze
 
 dbazel () {
   docker exec -it bazel-container bash -c "cd /src; bazelisk $*"
