@@ -10,4 +10,4 @@ if [ -z $( docker ps -f id=$(cat .bazel_docker_id) -q ) ]; then
     exit 1
 fi
 
-docker exec -it $( cat .bazel_docker_id ) bash -c "cd /src; bazelisk $*"
+docker exec -it $( cat .bazel_docker_id ) bash -c "cd $PWD; bazelisk $*"
