@@ -41,7 +41,7 @@ docker run -d \
   -p 8981:8981 \
   -v /tmp/worker:/tmp/worker \
   192.168.0.14:5000/tf-gpu-builder \
-  java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-24.config --public_name=192.168.0.10:8981
+  java -Djava.util.logging.config.file=/config/prod.logging.properties -jar buildfarm-shard-worker_deploy.jar /config/shard-worker-16.config --public_name=192.168.0.10:8981
 EOF
 
 ssh geli@192.168.0.11 bash << 'EOF'

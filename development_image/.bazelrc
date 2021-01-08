@@ -1,1 +1,4 @@
-build --remote_executor=grpc://buildfarm-server:8980 --spawn_strategy= --strategy_regexp=tensorflow/core/kernels/mlir_generated.*=local
+build --remote_executor=grpc://buildfarm-server:8980
+build --spawn_strategy=
+build --strategy_regexp=tensorflow/core/kernels/mlir_generated.*=local 
+build --jobs=200
