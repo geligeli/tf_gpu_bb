@@ -8,8 +8,8 @@ container:
 	--build-arg user=$(USER) \
 	--build-arg gid=$(GID) \
 	--build-arg group=$(GROUP) \
-	. --tag 192.168.0.14:5000/tf-gpu-env
+	. --tag 192.168.0.13:5000/tf-gpu-env
 
 deploy: container
-	docker push 192.168.0.14:5000/tf-gpu-env
+	docker push 192.168.0.13:5000/tf-gpu-env
 
