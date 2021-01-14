@@ -10,12 +10,12 @@ if [ ! -f .bazel_docker_id ]; then
   docker run \
     --rm -d -it \
     --name bazel-container \
-    --add-host buildfarm-server:192.168.0.14 \
-    --add-host buildfarm-redis:192.168.0.14 \
+    --add-host buildfarm-server:192.168.0.13 \
+    --add-host buildfarm-redis:192.168.0.13 \
     -v /home/geli/.bazel_in_docker:/home/geli/.bazel_in_docker \
     -v $PWD:$PWD \
     -v /tmp:/tmp \
-    192.168.0.14:5000/tf-gpu-env \
+    192.168.0.13:5000/tf-gpu-env \
     bash > .bazel_docker_id
 fi
 
@@ -24,12 +24,12 @@ if [ -z $( docker ps -f id=$(cat .bazel_docker_id) -q ) ]; then
   docker run \
     --rm -d -it \
     --name bazel-container \
-    --add-host buildfarm-server:192.168.0.14 \
-    --add-host buildfarm-redis:192.168.0.14 \
+    --add-host buildfarm-server:192.168.0.13 \
+    --add-host buildfarm-redis:192.168.0.13 \
     -v /home/geli/.bazel_in_docker:/home/geli/.bazel_in_docker \
     -v $PWD:$PWD \
     -v /tmp:/tmp \
-    192.168.0.14:5000/tf-gpu-env \
+    192.168.0.13:5000/tf-gpu-env \
     bash > .bazel_docker_id
 fi
 

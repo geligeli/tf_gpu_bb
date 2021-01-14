@@ -8,7 +8,7 @@ fi
 pushd $PWD
 cd $(dirname $0)/../development_image
 make deploy
-docker pull 192.168.0.14:5000/tf-gpu-env:latest
+docker pull 192.168.0.13:5000/tf-gpu-env:latest
 popd
 
 if [ -f .bazel_docker_id ]; then
@@ -21,8 +21,8 @@ fi
 docker run \
   --rm -d -it \
   --name bazel-container \
-  --add-host buildfarm-server:192.168.0.14 \
-  --add-host buildfarm-redis:192.168.0.14 \
+  --add-host buildfarm-server:192.168.0.13 \
+  --add-host buildfarm-redis:192.168.0.13 \
   -v /home/geli/.bazel_in_docker:/home/geli/.bazel_in_docker \
   -v $PWD:$PWD \
   -v /tmp:/tmp \
