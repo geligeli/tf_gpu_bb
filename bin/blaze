@@ -33,4 +33,4 @@ if [ -z $( docker ps -f id=$(cat .bazel_docker_id) -q ) ]; then
     bash > .bazel_docker_id
 fi
 
-docker exec -w $PWD $( cat .bazel_docker_id ) bazelisk "$@"
+docker exec -it -w $PWD $( cat .bazel_docker_id ) bazelisk "$@"
