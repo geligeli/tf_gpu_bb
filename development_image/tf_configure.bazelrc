@@ -8,13 +8,48 @@ build --action_env TF_CUDNN_VERSION="8"
 build --action_env CUDA_TOOLKIT_PATH="/usr/local/cuda-11.0"
 build --action_env TF_CUDA_COMPUTE_CAPABILITIES="3.5,6.1,7.5,8.0"
 build --action_env LD_LIBRARY_PATH="/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/include/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/local/nvidia/lib:/usr/local/nvidia/lib64"
-build --action_env GCC_HOST_COMPILER_PATH="/usr/bin/x86_64-linux-gnu-gcc-7"
+build --action_env GCC_HOST_COMPILER_PATH="/usr/bin/x86_64-linux-gnu-gcc-10"
 build --config=cuda
 build:opt --copt=-march=native
 build:opt --copt=-Wno-sign-compare
 build:opt --host_copt=-march=native
 build:opt --define with_default_optimizations=true
-build:opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mfpmath=both --copt=-msse4.2
+build:opt --copt=--copt=-mavx
+build:opt --copt=--copt=-mavx2
+build:opt --copt=--copt=-mfma
+build:opt --copt=--copt=-mfpmath=both
+build:opt --copt=--copt=-msse4.2
+test --flaky_test_attempts=1
+test --test_size_filters=small,medium
+test --test_env=LD_LIBRARY_PATH
+test:v1 --test_tag_filters=-benchmark-test,-no_oss,-no_gpu,-oss_serial
+test:v1 --build_tag_filters=-benchmark-test,-no_oss,-no_gpu
+test:v2 --test_tag_filters=-benchmark-test,-no_oss,-no_gpu,-oss_serial,-v1only
+test:v2 --build_tag_filters=-benchmark-test,-no_oss,-no_gpu,-v1only
+build --action_env TF_CONFIGURE_IOS="0"
+
+
+
+build --action_env PYTHON_BIN_PATH="/usr/bin/python3"
+build --action_env PYTHON_LIB_PATH="/usr/local/lib/python3.6/dist-packages"
+build --python_path="/usr/bin/python3"
+build --config=xla
+build --config=tensorrt
+build --action_env TF_CUDA_VERSION="11.0"
+build --action_env TF_CUDNN_VERSION="8"
+build --action_env CUDA_TOOLKIT_PATH="/usr/local/cuda-11.0"
+build --action_env TF_CUDA_COMPUTE_CAPABILITIES="3.5,6.1,7.5,8.0"
+build --action_env LD_LIBRARY_PATH="/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/include/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/local/nvidia/lib:/usr/local/nvidia/lib64"
+build --config=cuda_clang
+build --config=download_clang
+build:cuda_clang --config=download_clang_use_lld
+build --config=cuda_clang
+build:opt --copt=-mavx
+build:opt --copt=-mavx2
+build:opt --copt=--mfma
+build:opt --copt=-mfpmath=both
+build:opt --copt=-msse4.2
+build:opt --define with_default_optimizations=true
 test --flaky_test_attempts=3
 test --test_size_filters=small,medium
 test --test_env=LD_LIBRARY_PATH

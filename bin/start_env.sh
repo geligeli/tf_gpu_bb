@@ -26,7 +26,7 @@ docker run \
   -v /home/geli/.bazel_in_docker:/home/geli/.bazel_in_docker \
   -v $PWD:$PWD \
   -v /tmp:/tmp \
-  192.168.0.14:5000/tf-gpu-env \
+  192.168.0.13:5000/tf-gpu-env \
   bash > .bazel_docker_id
 
 complete -o nospace -F _bazel__complete blaze
