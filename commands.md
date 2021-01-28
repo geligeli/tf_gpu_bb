@@ -226,3 +226,21 @@ complete -o nospace -F _bazel__complete blaze
 dbazel () {
   docker exec -it bazel-container bash -c "cd /src; bazelisk $*"
 }
+
+
+
+## Print raw protocol buuffer
+protoc --decode tensorflow.SavedModel /home/geli/src/tensorflow/core/protobuf/saved_model.proto --proto_path=/home/geli/src < /tmp/saved_model/saved_model.pb  | less
+
+
+
+## Install CUDA on regular ubuntu 20.04 (non wsl)
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo apt-get install linux-headers-$(uname -r)
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+sudo apt-get update
+sudo apt-get -y install cuda-11-0
+sudo dpkg -i libcudnn8_8.0.4.30-1+cuda11.1_amd64.deb

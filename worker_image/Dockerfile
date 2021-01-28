@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:devel-gpu
+FROM 192.168.0.13:5000/tf-gpu-base
 # RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 # RUN apt-get -y update
 # RUN apt-get -y install gcc-10
@@ -25,7 +25,7 @@ RUN bazelisk build //src/main/java/build/buildfarm:buildfarm-server_deploy.jar \
     //src/main/java/build/buildfarm:buildfarm-shard-worker_deploy.jar
 RUN mv bazel-bin/src/main/java/build/buildfarm/buildfarm-*deploy.jar .
 RUN bazelisk clean
-RUN rm -r /tensorflow_src /root/.cache
+RUN rm -r /root/.cache
 COPY config /config
 EXPOSE 8980
 EXPOSE 8981

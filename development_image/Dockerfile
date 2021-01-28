@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:devel-gpu
+FROM 192.168.0.13:5000/tf-gpu-base
 # RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 # RUN apt-get -y update
 # RUN apt-get -y install gcc-10
